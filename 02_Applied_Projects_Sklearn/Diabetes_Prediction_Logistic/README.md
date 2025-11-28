@@ -1,15 +1,15 @@
 # Diabetes Prediction with Logistic Regression
 
-## 📌 Project Overview
+## Project Overview
 A binary classification project to predict diabetes using the **Pima Indians Diabetes Dataset**.
 The main focus is not just applying a model, but critically analyzing **preprocessing strategies**—specifically comparing *Mean Imputation* vs. *Feature Dropping* for handling missing data.
 
-## 📊 Dataset
+## Dataset
 * **Source:** Standard Pima Indians Diabetes Dataset.
 * **Features:** Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age.
 * **Target:** `Outcome` (0: Healthy, 1: Diabetic).
 
-## ⚙️ Methodology
+## Methodology
 
 ### 1. Exploratory Data Analysis (EDA)
 * Analyzed feature correlations to find strong predictors (e.g., Glucose).
