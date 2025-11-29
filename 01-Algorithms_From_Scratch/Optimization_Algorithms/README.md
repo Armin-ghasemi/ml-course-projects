@@ -1,5 +1,10 @@
 # Optimization Algorithms: Steepest Descent vs. Newton's Method
 
+
+![Course](https://img.shields.io/badge/Course-Machine%20Learning-blue)
+![University](https://img.shields.io/badge/University-University%20of%20Tehran-red)
+![Assignment](https://img.shields.io/badge/Assignment-HW3%20--%20Question%204-green)
+
 This folder contains a manual implementation of fundamental optimization algorithms to find the global minimum of the **Rosenbrock Function** (also known as the Banana function).
 
 ## Project Overview
