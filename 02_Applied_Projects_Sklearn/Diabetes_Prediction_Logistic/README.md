@@ -1,5 +1,9 @@
 # Diabetes Prediction with Logistic Regression
 
+![Course](https://img.shields.io/badge/Course-Machine%20Learning-blue)
+![University](https://img.shields.io/badge/University-University%20of%20Tehran-red)
+![Assignment](https://img.shields.io/badge/Assignment-HW1%20--%20Question%206-green)
+
 ## Project Overview
 A binary classification project to predict diabetes using the **Pima Indians Diabetes Dataset**.
 The main focus is not just applying a model, but critically analyzing **preprocessing strategies**—specifically comparing *Mean Imputation* vs. *Feature Dropping* for handling missing data.
