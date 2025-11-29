@@ -1,5 +1,9 @@
 # Gaussian Discriminant Analysis (GDA) Simulation
 
+![Course](https://img.shields.io/badge/Course-Machine%20Learning-blue)
+![University](https://img.shields.io/badge/University-University%20of%20Tehran-red)
+![Assignment](https://img.shields.io/badge/Assignment-HW2%20--%20Question%205-green)
+
 This folder contains a manual implementation and simulation of a **Gaussian Discriminant Analysis (GDA)** classifier without using high-level libraries like scikit-learn.
 
 ## Project Overview
