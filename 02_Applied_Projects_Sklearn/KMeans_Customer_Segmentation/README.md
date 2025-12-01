@@ -1,8 +1,8 @@
 # Customer Segmentation with K-Means
 
-![University](https://img.shields.io/badge/University-University%20of%20Tehran-red)
 ![Course](https://img.shields.io/badge/Course-Machine%20Learning-blue)
-![Library](https://img.shields.io/badge/Library-Scikit--Learn-orange)
+![University](https://img.shields.io/badge/University-University%20of%20Tehran-red)
+![Assignment](https://img.shields.io/badge/Assignment-HW4%20--%20Question%205-green)
 
 This project applies the **K-Means Clustering** algorithm to segment customers of a shopping mall based on their spending behavior and income.
 
