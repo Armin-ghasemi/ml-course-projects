@@ -3,7 +3,6 @@
 ![University](https://img.shields.io/badge/University-University%20of%20Tehran-red)
 ![Course](https://img.shields.io/badge/Course-Machine%20Learning-blue)
 ![Assignment](https://img.shields.io/badge/Assignment-HW5%20--%20Question%205-green)
-![Framework](https://img.shields.io/badge/Framework-PyTorch-orange)
 
 This folder contains a manual implementation of a **Feed-Forward Neural Network (Multilayer Perceptron)** designed to solve a regression problem using **PyTorch**.
 
