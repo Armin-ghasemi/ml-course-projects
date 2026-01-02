@@ -2,6 +2,7 @@
 
 ![Course](https://img.shields.io/badge/Course-Machine%20Learning-blue)
 ![University](https://img.shields.io/badge/University-University%20of%20Tehran-red)
+![Assignment](https://img.shields.io/badge/Assignment-Final%20%20Project%20-green)
 ![Stack](https://img.shields.io/badge/Stack-PyTorch%20%7C%20Librosa%20%7C%20Scikit--Learn-orange)
 
 This directory hosts a comprehensive end-to-end pipeline for audio signal processing. The project bridges the gap between raw signal analysis and advanced machine learning, demonstrating how to transform unstructured audio data into meaningful insights using both unsupervised and supervised techniques.
@@ -92,9 +93,6 @@ This is the most complex task: identifying **who** is speaking among a pool of 6
 
 **Feature Importance Analysis:**
 To understand how the model distinguishes people, we used **Random Forest** feature importance. The results show that **Fundamental Frequency (F0)** is the specific "fingerprint" of a speaker.
-
-**Visual Proof:**
-The KDE (Kernel Density Estimate) plot below shows the pitch distribution for different speakers. Notice how each speaker occupies a specific frequency range (Peaks are separated).
 
 ![Voice Print KDE](/03_Final_Project_Audio_Analysis/results/figures/speaker_voice_print_F0.png)
 *Figure 5: Voice Prints - Distinct pitch distributions for different speakers.*
