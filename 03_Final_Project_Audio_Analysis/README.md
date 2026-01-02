@@ -1,4 +1,4 @@
-# Audio Signal Processing & Analysis Capstone
+# Audio Signal Processing and Analysis Capstone
 
 ![Course](https://img.shields.io/badge/Course-Machine%20Learning-blue)
 ![University](https://img.shields.io/badge/University-University%20of%20Tehran-red)
@@ -6,60 +6,106 @@
 
 This directory hosts a comprehensive end-to-end pipeline for audio signal processing. The project bridges the gap between raw signal analysis and advanced machine learning, demonstrating how to transform unstructured audio data into meaningful insights using both unsupervised and supervised techniques.
 
-## Directory Contents
+---
 
-The analysis is divided into four sequential modules, moving from raw data engineering to complex biometric identification tasks.
+## Project Abstract
+The primary objective of this project is to implement a full audio analysis pipeline. Unlike standard datasets where features are provided, here we start from **raw audio waveforms**. We perform Digital Signal Processing (DSP) to extract relevant features and then apply machine learning algorithms for three distinct tasks:
+1.  **Unsupervised Clustering:** Discovering latent patterns and grouping speakers without labels.
+2.  **Gender Classification:** Binary classification to distinguish between male and female speakers.
+3.  **Speaker Identification:** Biometric recognition of specific individuals.
 
-| Project Module | Domain | Key Techniques & Frameworks |
-| :--- | :--- | :--- |
-| **[Preprocessing Pipeline](./notebooks/01_Preprocessing_Pipeline.ipynb)** | Signal Processing (DSP) | **Librosa**, Voice Activity Detection (VAD), Butterworth Low-Pass Filtering, Segmentation, MFCC Extraction. |
-| **[Unsupervised Clustering](./notebooks/02_Unsupervised_Clustering.ipynb)** | Pattern Discovery | **PCA** (Dimensionality Reduction), **K-Means Clustering**, Elbow Method, Silhouette Analysis, 2D Visualization. |
-| **[Gender Classification](./notebooks/03_Gender_Classification.ipynb)** | Binary Classification | **Deep Learning (MLP)**, PyTorch Custom Module, SVM (RBF Kernel), ROC/AUC Analysis, Dropout Regularization. |
-| **[Speaker Identification](./notebooks/04_Speaker_Identification.ipynb)** | Biometrics (Multi-class) | **N-Way Classification**, Random Forest Feature Importance, Kernel Density Estimation (KDE), Cross-Entropy Loss. |
+---
 
-## Technical Focus Areas
+## Algorithms and Techniques
 
-The implementations in this directory highlight several critical aspects of applied audio analysis:
+To ensure robust performance and valid comparisons, we implemented and benchmarked a wide range of algorithms across different modules:
 
-### 1. Feature Engineering & DSP
-* **Spectral Analysis:** Extracting 20 Mel-Frequency Cepstral Coefficients (MFCCs) to represent the timbre of the voice.
-* **Pitch & Noise:** Calculating Fundamental Frequency (F0) and Zero-Crossing Rate (ZCR) to capture vocal characteristics and signal noisiness.
+| Domain | Algorithms and Methods Implemented |
+| :--- | :--- |
+| **Preprocessing** | VAD (Voice Activity Detection), Butterworth Low-Pass Filter, Z-Score Normalization, Signal Segmentation. |
+| **Feature Extraction** | MFCCs (20 Coefficients), Fundamental Frequency ($F_0$), Zero-Crossing Rate (ZCR). |
+| **Clustering** | **PCA** (Dimensionality Reduction), **K-Means**, **DBSCAN** (Density-Based), **Hierarchical Clustering** (Agglomerative). |
+| **Classification** | **SVM** (Linear, RBF, Polynomial kernels), **KNN**, **Logistic Regression**, **Random Forest**, **MLP** (Deep Neural Network). |
 
-### 2. Deep Learning Architecture (PyTorch)
-* **Custom MLP:** We implemented a Multi-Layer Perceptron using `torch.nn.Module` with three fully connected layers.
-* **Optimization:** The models utilize `Adam` optimizer and `CrossEntropyLoss`, employing `DataLoader` for efficient batch processing.
+---
 
-### 3. Model Interpretation
-* **Confusion Matrices:** Detailed breakdown of True Positives and False Negatives for both gender and speaker tasks.
-* **Feature Importance:** Utilizing Random Forest to quantitatively rank which audio features (e.g., F0 vs. MFCCs) contribute most to speaker identity.
+## Project Methodology and Analysis
 
-## Visualizations & Key Results
+### 1. Preprocessing Pipeline
+**File:** `notebooks/01_Preprocessing_Pipeline.ipynb`
 
-### Unsupervised Analysis
-We projected the high-dimensional feature vectors into 2D space using PCA. The results show a clear natural separation between male and female voice clusters without using any labels.
+This module handles the cleaning and transformation of raw audio data. Since audio signals often contain silence or background noise, rigorous preprocessing is essential before feature extraction.
 
-![PCA and K-Means](./results/figures/pca_2d_projection.png)
-*Figure 1: 2D PCA Projection of audio features showing distinct natural groupings.*
+**Key Steps:**
+* **Voice Activity Detection (VAD):** Removing silent parts of the audio to focus only on speech.
+* **Noise Reduction:** Applying a Butterworth Low-Pass filter to eliminate high-frequency noise.
+* **Segmentation:** Splitting long audio files into fixed 0.5-second segments to augment the dataset.
+* **Feature Extraction:** Generating a 23-dimensional feature vector for each segment (20 MFCCs, Pitch, and ZCR).
 
-### Gender Classification
-The PyTorch MLP model achieved high accuracy. The confusion matrix below demonstrates the model's robustness in distinguishing between male and female speakers.
+---
 
-![Gender Confusion Matrix](./results/figures/mlp_final_confusion_matrix.png)
+### 2. Unsupervised Clustering
+**File:** `notebooks/02_Unsupervised_Clustering.ipynb`
 
-### Speaker Identification (Biometrics)
-For the 6-way speaker identification task, we analyzed the unique "Voice Print" of each individual. The KDE plot below proves that **Fundamental Frequency (F0)** is a strong discriminator between speakers.
+In this section, we explore the structure of the data without using any labels. We utilized dimensionality reduction and density-based clustering to verify if voice samples naturally segregate.
 
-![Voice Print KDE](./results/figures/speaker_voice_print_F0.png)
+**Visual Analysis (PCA):**
+We used **PCA** to reduce the 23-dimensional features into 2 dimensions. As seen in **Figure 1**, the data forms two distinct clusters naturally.
 
-**Top Discriminative Features:**
-Based on Random Forest analysis, the following features carry the most weight for identifying a speaker:
+**Clustering Algorithm (DBSCAN):**
+Instead of relying solely on centroid-based methods like K-Means, we applied **DBSCAN (Density-Based Spatial Clustering)**.
+* **Advantage:** DBSCAN does not require specifying the number of clusters beforehand and is robust against outliers.
+* **Result:** The algorithm successfully identified the dense regions corresponding to different voice types while marking ambiguous samples as noise.
 
-| Rank | Feature | Importance Score | Description |
-| :---: | :--- | :---: | :--- |
-| 1 | **F0 (Pitch)** | **0.1417** | Fundamental Frequency |
-| 2 | **MFCC_18** | **0.1101** | High-frequency timbre |
-| 3 | **MFCC_20** | **0.0908** | High-frequency timbre |
-| 4 | **MFCC_6** | **0.0836** | Mid-frequency timbre |
+| PCA Projection | DBSCAN Results |
+| :---: | :---: |
+| ![PCA Projection](/03_Final_Project_Audio_Analysis/results/figures/pca_2d_projection.png) | ![DBSCAN Clusters](/03_Final_Project_Audio_Analysis/results/figures/DBSCAN_final_clusters.png) |
+| *Figure 1: Natural Data Separation* | *Figure 2: Density-Based Clustering* |
+
+---
+
+### 3. Gender Classification
+**File:** `notebooks/03_Gender_Classification.ipynb`
+
+In this supervised learning task, we trained models to classify speakers as Male or Female. We benchmarked traditional models (SVM, KNN) against a Deep Learning approach.
+
+**Model Architecture:**
+We designed a custom **Multi-Layer Perceptron (MLP)** using PyTorch with the following specifications:
+* **Input Layer:** 23 neurons (Audio Features).
+* **Hidden Layers:** 3 Fully Connected layers with ReLU activation and Dropout (p=0.3) for regularization.
+* **Output Layer:** 2 neurons (Binary Class).
+
+**Performance:**
+The MLP model demonstrated stable learning dynamics (Figure 3) and achieved high accuracy on the test set. The confusion matrix (Figure 4) shows minimal misclassification.
+
+| Training Dynamics | Confusion Matrix |
+| :---: | :---: |
+| ![Loss Curve](/03_Final_Project_Audio_Analysis/results/figures/mlp_training_dynamics.png) | ![Confusion Matrix](/03_Final_Project_Audio_Analysis/results/figures/mlp_final_confusion_matrix.png) |
+| *Figure 3: Training Loss and Accuracy* | *Figure 4: Final Test Results* |
+
+---
+
+### 4. Speaker Identification (Biometrics)
+**File:** `notebooks/04_Speaker_Identification.ipynb`
+
+This is the most complex task: identifying **who** is speaking among a pool of 6 individuals (N-way classification). This simulates a biometric security system.
+
+**Feature Importance Analysis:**
+To understand how the model distinguishes people, we used **Random Forest** feature importance. The results show that **Fundamental Frequency (F0)** is the specific "fingerprint" of a speaker.
+
+**Visual Proof:**
+The KDE (Kernel Density Estimate) plot below shows the pitch distribution for different speakers. Notice how each speaker occupies a specific frequency range (Peaks are separated).
+
+![Voice Print KDE](/03_Final_Project_Audio_Analysis/results/figures/speaker_voice_print_F0.png)
+*Figure 5: Voice Prints - Distinct pitch distributions for different speakers.*
+
+**Final Results:**
+The multi-class MLP model was optimized for this task, achieving high precision across all 6 classes.
+
+![Speaker ID Matrix](/03_Final_Project_Audio_Analysis/results/figures/mlp_speaker_id_confusion_matrix_standardized.png)
+*Figure 6: Confusion Matrix for 6-Way Speaker Identification.*
+
+---
 
 ## How to run
 
