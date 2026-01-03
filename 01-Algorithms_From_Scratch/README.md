@@ -2,7 +2,7 @@
 
 ![Course](https://img.shields.io/badge/Course-Machine%20Learning-blue)
 ![University](https://img.shields.io/badge/University-University%20of%20Tehran-red)
-![Language](https://img.shields.io/badge/Language-Python%20%7C%20NumPy-yellow)
+![Language](https://img.shields.io/badge/Language-Python%20%7C%20NumPy-orange)
 
 This directory contains fundamental machine learning algorithms implemented manually using Python and NumPy. The primary objective is to demonstrate a mathematical understanding of optimization techniques, probabilistic modeling, and decision boundaries without reliance on high-level machine learning frameworks.
 
