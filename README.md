@@ -81,8 +81,8 @@ The following libraries and tools were utilized across the projects:
 To access the code and notebooks, clone the repository using the following command:
 
 ```bash
-git clone [https://github.com/YOUR_USERNAME/REPO_NAME.git](https://github.com/YOUR_USERNAME/REPO_NAME.git)
-cd REPO_NAME
+git clone [https://github.com/Armin-ghasemi/ml-course-projects.git](https://github.com/Armin-ghasemi/ml-course-projects.git)
+cd ml-course-projects
 ```
 
 ### Note on Dependencies
